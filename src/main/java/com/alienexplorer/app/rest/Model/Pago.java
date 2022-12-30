@@ -13,16 +13,19 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Table(name = "pago")
 public class Pago {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    @GeneratedValue()
+    @Column(name = "pago_id")
+    private Long id;
 
     @JsonFormat(pattern="yyyy-MM-dd")
     @Temporal(TemporalType.DATE)
+    @Column(name = "fecha_pago")
     private LocalDate fechaPago;
 
 
     @JsonFormat(pattern="yyyy-MM-dd")
     @Temporal(TemporalType.DATE)
+    @Column(name = "fecha_venc")
     private LocalDate fechaVenc;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -30,6 +33,14 @@ public class Pago {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private Cliente cliente;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public LocalDate getFechaPago() {
         return fechaPago;

@@ -29,6 +29,7 @@ public class ClienteController {
         return new ResponseEntity<List<Cliente>>(users, HttpStatus.OK);
     }
 
+
     @PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Cliente> createUser(@Valid @RequestBody final Cliente user) {
         clienteRepository.save(user);
